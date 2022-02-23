@@ -51,5 +51,42 @@
       "price": 0.35
     }
   ],
-  "cart": []
+  "cart": [
+    {
+      "item": {
+        "id": "004-apricot",
+        "name": "apricot",
+        "price": 0.35
+      },
+      "quantity": 1,
+      "id": 1
+    },
+    {
+      "item": {
+        "id": "002-carrot",
+        "name": "carrot",
+        "price": 0.35
+      },
+      "quantity": 1,
+      "id": 2
+    },
+    {
+      "item": {
+        "id": "003-apple",
+        "name": "apple",
+        "price": 0.35
+      },
+      "quantity": 1,
+      "id": 3
+    },
+    {
+      "item": {
+        "id": "006-bananas",
+        "name": "bananas",
+        "price": 0.35
+      },
+      "quantity": 1,
+      "id": 4
+    }
+  ]
 }
