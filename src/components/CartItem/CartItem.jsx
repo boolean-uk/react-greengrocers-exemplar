@@ -1,17 +1,33 @@
 import React from 'react'
 
-const CartItem = () => {
+const CartItem = ({ cartItem, updateCart }) => {
   return (
     <li>
       <img
         className="cart--item-icon"
-        src="assets/icons/001-beetroot.svg"
-        alt="beetroot"
+        src={`/assets/icons/${cartItem.id}.svg`}
+        alt={cartItem.id}
       />
       <p>beetroot</p>
-      <button className="quantity-btn remove-btn center">-</button>
-      <span className="quantity-text center">1</span>
-      <button className="quantity-btn add-btn center">+</button>
+      <button
+        className="quantity-btn remove-btn center"
+        onClick={() => {
+          cartItem.quantity--
+          updateCart(cartItem)
+        }}
+      >
+        -
+      </button>
+      <span className="quantity-text center">{cartItem.quantity}</span>
+      <button
+        onClick={() => {
+          cartItem.quantity++
+          updateCart(cartItem)
+        }}
+        className="quantity-btn add-btn center"
+      >
+        +
+      </button>
     </li>
   )
 }

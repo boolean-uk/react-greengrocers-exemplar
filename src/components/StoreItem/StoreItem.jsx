@@ -1,12 +1,12 @@
 import React from 'react'
 
-const StoreItem = () => {
+const StoreItem = ({ storeItem, addToCart }) => {
   return (
     <li>
-      <div class="store--item-icon">
-        <img src="/assets/icons/001-beetroot.svg" alt="beetroot" />
+      <div className="store--item-icon">
+        <img src={`/assets/icons/${storeItem.id}.svg`} alt={storeItem.name} />
       </div>
-      <button>Add to cart</button>
+      <button onClick={() => addToCart(storeItem)}>Add to cart</button>
     </li>
   )
 }
