@@ -1,11 +1,10 @@
 import './styles/reset.css'
 import './styles/index.css'
 import { useState } from 'react'
-import StoreItem from './components/store-item/store-item'
-import CartItem from './components/cart-item/cart-item'
+import StoreItem from './components/store/store-item/store-item'
 import storeItems from './store-items'
-import CartItemList from './components/cart-item-list/cart-item-list'
-import StoreItemList from './components/store-item-list/store-item-list'
+import CartItemList from './components/cart/cart-item-list/cart-item-list'
+import StoreItemList from './components/store/store-item-list/store-item-list'
 
 const initialStoreItems = storeItems
 
@@ -41,10 +40,6 @@ export default function App() {
       return updatedCart
     })
   }
-
-  const storeItemList = storeItems.map((item, i) => (
-    <StoreItem key={`store-item-${i}`} item={item} addToCart={addToCart} />
-  ))
 
   const total = cartItems.reduce(
     (sum, cartItem) => (sum += cartItem.item.price * cartItem.quantity),
