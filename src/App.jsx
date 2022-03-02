@@ -2,9 +2,9 @@ import './styles/reset.css'
 import './styles/index.css'
 import { useState } from 'react'
 import storeItems from './store-items'
-import StoreItemList from './components/store/store-item-list/store-item-list'
 import Footer from './components/footer/footer'
 import Cart from './components/cart-components/cart/cart'
+import Store from './components/store-components/store/store'
 
 const initialStoreItems = storeItems
 
@@ -43,10 +43,7 @@ export default function App() {
 
   return (
     <>
-      <header id="store">
-        <h1>Greengrocers</h1>
-        <StoreItemList storeItems={storeItems} addToCart={addToCart} />
-      </header>
+      <Store storeItems={storeItems} addToCart={addToCart} />
       <Cart cartItems={cartItems} updateCartItem={updateCartItem} />
       <Footer />
     </>
