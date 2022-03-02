@@ -1,11 +1,11 @@
 import './styles/reset.css'
 import './styles/index.css'
 import { useState } from 'react'
-import StoreItem from './components/store/store-item/store-item'
 import storeItems from './store-items'
 import CartItemList from './components/cart/cart-item-list/cart-item-list'
 import StoreItemList from './components/store/store-item-list/store-item-list'
 import Total from './components/cart/total/total'
+import Footer from './components/footer/footer'
 
 const initialStoreItems = storeItems
 
@@ -60,19 +60,7 @@ export default function App() {
         </div>
         <Total cart={cartItems} />
       </main>
-      <div>
-        Icons made by
-        <a
-          href="https://www.flaticon.com/authors/icongeek26"
-          title="Icongeek26"
-        >
-          Icongeek26
-        </a>
-        from
-        <a href="https://www.flaticon.com/" title="Flaticon">
-          www.flaticon.com
-        </a>
-      </div>
+      <Footer />
     </>
   )
 }
