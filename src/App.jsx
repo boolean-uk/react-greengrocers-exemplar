@@ -5,6 +5,7 @@ import StoreItem from './components/store/store-item/store-item'
 import storeItems from './store-items'
 import CartItemList from './components/cart/cart-item-list/cart-item-list'
 import StoreItemList from './components/store/store-item-list/store-item-list'
+import Total from './components/cart/total/total'
 
 const initialStoreItems = storeItems
 
@@ -57,14 +58,7 @@ export default function App() {
         <div className="cart--item-list-container">
           <CartItemList cartItems={cartItems} updateCartItem={updateCartItem} />
         </div>
-        <div className="total-section">
-          <div>
-            <h3>Total</h3>
-          </div>
-          <div>
-            <span className="total-number">£{total.toFixed(2)}</span>
-          </div>
-        </div>
+        <Total cart={cartItems} />
       </main>
       <div>
         Icons made by
