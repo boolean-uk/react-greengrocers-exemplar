@@ -5,6 +5,7 @@ import StoreItem from './components/store-item/store-item'
 import CartItem from './components/cart-item/cart-item'
 import storeItems from './store-items'
 import CartItemList from './components/cart-item-list/cart-item-list'
+import StoreItemList from './components/store-item-list/store-item-list'
 
 const initialStoreItems = storeItems
 
@@ -45,14 +46,16 @@ export default function App() {
     <StoreItem key={`store-item-${i}`} item={item} addToCart={addToCart} />
   ))
 
-
-  const total = cartItems.reduce((sum, cartItem) => sum += cartItem.item.price * cartItem.quantity, 0)
+  const total = cartItems.reduce(
+    (sum, cartItem) => (sum += cartItem.item.price * cartItem.quantity),
+    0
+  )
 
   return (
     <>
       <header id="store">
         <h1>Greengrocers</h1>
-        <ul className="item-list store--item-list">{storeItemList}</ul>
+        <StoreItemList storeItems={storeItems} addToCart={addToCart} />
       </header>
       <main id="cart">
         <h2>Your Cart</h2>
