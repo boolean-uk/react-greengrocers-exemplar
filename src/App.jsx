@@ -1,62 +1,15 @@
 import './styles/reset.css'
 import './styles/index.css'
-import { useEffect, useState } from 'react'
-import StoreItem from './styles/components/store-item/store-item'
-import CartItem from './styles/components/cart-item/cart-item'
+import { useState } from 'react'
+import StoreItem from './components/store-item/store-item'
+import CartItem from './components/cart-item/cart-item'
+import storeItems from './store-items'
 
-/*
-Here's what a store item should look like
-{
-  id: '001-beetroot',
-  name: 'beetroot',
-  price: 0.35
-}
-
-What should a cart item look like? 🤔
-{
-  item: {
-    id: '001-beetroot',
-    name: 'beetroot',
-    price: 0.35
-  },
-  quantity: 1
-}
-*/
-
-const initialStoreItems = []
-
-const getStoreItems = () => {
-  return fetch('http://localhost:3001/items').then(res => res.json())
-}
-
-const getCartItems = () => {
-  return fetch('http://localhost:3001/cart').then(res => res.json())
-}
-
-const addItemToCart = cartItem => {
-  return fetch('http://localhost:3001/cart', {
-    headers: {
-      'Content-Type': 'application/json'
-    },
-    method: 'POST',
-    body: JSON.stringify(cartItem)
-  }).then(res => res.json())
-}
+const initialStoreItems = storeItems
 
 export default function App() {
-  const [storeItems, setStoreItems] = useState(initialStoreItems)
+  const [storeItems] = useState(initialStoreItems)
   const [cartItems, setCartItems] = useState([])
-  const [shouldFetch, setShouldFetch] = useState(true)
-  
-  useEffect(() => {
-    if(!shouldFetch) {
-      return
-    }
-    console.log('fetching')
-    getStoreItems().then(items => setStoreItems(items))
-    getCartItems().then(cartItems => setCartItems(cartItems))
-    setShouldFetch(false)
-  }, [shouldFetch])
 
   const isInCart = item => {
     return cartItems.findIndex(cItem => cItem.item.id === item.id) !== -1
@@ -67,7 +20,24 @@ export default function App() {
       return
     }
     const cartItem = { item: item, quantity: 1 }
-    addItemToCart(cartItem).then(() => setShouldFetch(true))
+    setCartItems(cartItems => [...cartItems, cartItem])
+  }
+
+  const updateCartItem = updatedCartItem => {
+    setCartItems(currentCart => {
+      const updatedCart = currentCart
+        .map(cartItem => {
+          if (cartItem.item.id === updatedCartItem.item.id) {
+            if (updatedCartItem.quantity === 0) {
+              return null
+            }
+            return updatedCartItem
+          }
+          return cartItem
+        })
+        .filter(cartItem => cartItem !== null)
+      return updatedCart
+    })
   }
 
   const storeItemList = storeItems.map((item, i) => (
@@ -75,8 +45,14 @@ export default function App() {
   ))
 
   const cartItemList = cartItems.map((cartItem, i) => (
-    <CartItem key={`cart-item-${i}`} cartItem={cartItem} />
+    <CartItem
+      key={`cart-item-${i}`}
+      cartItem={cartItem}
+      updateCartItem={updateCartItem}
+    />
   ))
+
+  const total = cartItems.reduce((sum, cartItem) => sum += cartItem.item.price * cartItem.quantity, 0)
 
   return (
     <>
@@ -94,7 +70,7 @@ export default function App() {
             <h3>Total</h3>
           </div>
           <div>
-            <span className="total-number">£0.00</span>
+            <span className="total-number">£{total.toFixed(2)}</span>
           </div>
         </div>
       </main>
