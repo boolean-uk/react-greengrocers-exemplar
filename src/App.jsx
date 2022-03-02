@@ -2,10 +2,9 @@ import './styles/reset.css'
 import './styles/index.css'
 import { useState } from 'react'
 import storeItems from './store-items'
-import CartItemList from './components/cart/cart-item-list/cart-item-list'
 import StoreItemList from './components/store/store-item-list/store-item-list'
-import Total from './components/cart/total/total'
 import Footer from './components/footer/footer'
+import Cart from './components/cart-components/cart/cart'
 
 const initialStoreItems = storeItems
 
@@ -42,24 +41,13 @@ export default function App() {
     })
   }
 
-  const total = cartItems.reduce(
-    (sum, cartItem) => (sum += cartItem.item.price * cartItem.quantity),
-    0
-  )
-
   return (
     <>
       <header id="store">
         <h1>Greengrocers</h1>
         <StoreItemList storeItems={storeItems} addToCart={addToCart} />
       </header>
-      <main id="cart">
-        <h2>Your Cart</h2>
-        <div className="cart--item-list-container">
-          <CartItemList cartItems={cartItems} updateCartItem={updateCartItem} />
-        </div>
-        <Total cart={cartItems} />
-      </main>
+      <Cart cartItems={cartItems} updateCartItem={updateCartItem} />
       <Footer />
     </>
   )
