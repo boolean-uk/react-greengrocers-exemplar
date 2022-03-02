@@ -4,6 +4,7 @@ import { useState } from 'react'
 import StoreItem from './components/store-item/store-item'
 import CartItem from './components/cart-item/cart-item'
 import storeItems from './store-items'
+import CartItemList from './components/cart-item-list/cart-item-list'
 
 const initialStoreItems = storeItems
 
@@ -44,13 +45,6 @@ export default function App() {
     <StoreItem key={`store-item-${i}`} item={item} addToCart={addToCart} />
   ))
 
-  const cartItemList = cartItems.map((cartItem, i) => (
-    <CartItem
-      key={`cart-item-${i}`}
-      cartItem={cartItem}
-      updateCartItem={updateCartItem}
-    />
-  ))
 
   const total = cartItems.reduce((sum, cartItem) => sum += cartItem.item.price * cartItem.quantity, 0)
 
@@ -63,7 +57,7 @@ export default function App() {
       <main id="cart">
         <h2>Your Cart</h2>
         <div className="cart--item-list-container">
-          <ul className="item-list cart--item-list">{cartItemList}</ul>
+          <CartItemList cartItems={cartItems} updateCartItem={updateCartItem} />
         </div>
         <div className="total-section">
           <div>
