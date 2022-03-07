@@ -10,7 +10,8 @@ function CartItems(props) {
     <div className="cart--item-list-container">
       <ul className="item-list cart--item-list">
         {cartItems.map(cartItem => {
-          return <CartItem cartItem={cartItem}
+          return <CartItem key={cartItem.item.name}
+            cartItem={cartItem}
             increaseQuantity={increaseQuantity}
             decreaseQuantity={decreaseQuantity} />
         })}
