@@ -26,6 +26,10 @@ button {
   height: 40vh;
   padding: 1rem;
 
+  display: grid;
+  place-self: 41px;
+  place-items: center;
+  
   overflow-y: scroll;
 
   background-color: #e7f4ea;
