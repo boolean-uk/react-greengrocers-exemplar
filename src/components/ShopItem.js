@@ -1,3 +1,5 @@
+import { Titles } from "../utils/vars"
+
 export const ShopItem = ({item, addItemToCart}) => {
 
   return (
@@ -8,7 +10,7 @@ export const ShopItem = ({item, addItemToCart}) => {
         alt={item.name} 
       />
       </div>
-      <button onClick={() => addItemToCart(item)}>Add to cart</button>
+      <button onClick={() => addItemToCart(item)}>{Titles.cartAdd}</button>
       <span>£{item.price.toFixed(2)}</span>
     </li>
   )

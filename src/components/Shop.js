@@ -1,13 +1,15 @@
 import { useState } from "react"
 
 import { ShopItem } from "./ShopItem"
+import { Cart } from "./Cart"
 
 import { Inventory, ShopItemTypes } from "../store-items"
 
-import { SortTypes } from "../utils/vars"
+import { Titles, SortTypes } from "../utils/vars"
 
-export const Shop = ({addItemToCart}) => {
+export const Shop = () => {
 
+  const [cartItem, setCartItem] = useState(null)
   const [sortType, setSortType] = useState(SortTypes.price)
   
   const [filters, setFilters] = useState({
@@ -24,49 +26,56 @@ export const Shop = ({addItemToCart}) => {
       [SortTypes.name] : (a, b) => a.name.localeCompare(b.name)
   }
 
-  const filteredShopItems = Inventory
+  const filteredItems = Inventory
     .filter(storeItem => filters[storeItem.type])
     .sort(sortFunctions[sortType])
 
   return (
-    <div id="store">
-      <label>
-        Sort 
-        <select 
-          onChange={(e) => setSortType(e.target.value)}
-          value={sortType}
-        >
-          <option value={SortTypes.price}>Price</option>
-          <option value={SortTypes.name}>Name</option>
-        </select>
-      </label>
-      <div>
-        <label>
-          <input 
-            type="checkbox" 
-            checked={filters[ShopItemTypes.fruit]} 
-            onChange={() => toggleFilter(ShopItemTypes.fruit)}
-          />
-          Show fruit
+    <>
+      <div id="store">
+        <label for="sort">
+          {Titles.shopSort} 
+          <select 
+            id="sort"
+            onChange={(e) => setSortType(e.target.value)}
+            value={sortType}
+          >
+            <option value={SortTypes.price}>{SortTypes.price}</option>
+            <option value={SortTypes.name}>{SortTypes.name}</option>
+          </select>
         </label>
-        <label>
-          <input 
-            type="checkbox" 
-            checked={filters[ShopItemTypes.veg]}
-            onChange={() => toggleFilter(ShopItemTypes.veg)}
-          />
-          Show vegetables
-        </label>
+        <div>
+          <label for="filters">
+            <input
+              id="fruit"
+              type="checkbox" 
+              checked={filters[ShopItemTypes.fruit]} 
+              onChange={() => toggleFilter(ShopItemTypes.fruit)}
+            />
+            Show fruit
+          </label>
+          <label for="veg">
+            <input 
+              id="veg"
+              type="checkbox" 
+              checked={filters[ShopItemTypes.veg]}
+              onChange={() => toggleFilter(ShopItemTypes.veg)}
+            />
+            Show vegetables
+          </label>
+        </div>
+        <ul className="item-list store--item-list">
+          {filteredItems.map((item, index) => (
+            <ShopItem 
+              key={item.id} 
+              item={item} 
+              addItemToCart={setCartItem}
+            />
+          ))}
+        </ul>
       </div>
-      <ul className="item-list store--item-list">
-        {Inventory.map((item, index) => (
-          <ShopItem 
-            key={item.id} 
-            item={item} 
-            addItemToCart={addItemToCart}
-          />
-        ))}
-      </ul>
-    </div>
+      
+      <Cart item={cartItem} />
+    </>
   )
 }

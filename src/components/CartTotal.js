@@ -4,7 +4,7 @@ export const CartTotal = (props) => {
   
   const { cartItems } = props
 
-  const totalCost = () => {
+  const getTotal = () => {
     let total = 0
     for (const cartItem of cartItems) {
       total += cartItem.item.price * cartItem.quantity
@@ -19,7 +19,7 @@ export const CartTotal = (props) => {
         <h3>{Titles.cartTotal}</h3>
       </div>
       <div>
-        <span className="total-number">£{totalCost()}</span>
+        <span className="total-number">£{getTotal()}</span>
       </div>
     </div>
   )

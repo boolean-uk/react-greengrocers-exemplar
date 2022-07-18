@@ -1,8 +1,6 @@
 import { useState, useEffect } from "react"
 
 import { Shop } from "./components/Shop"
-import { Cart } from "./components/Cart"
-
 import { Titles } from "./utils/vars"
 
 import "./styles/reset.css"
@@ -10,11 +8,7 @@ import "./styles/index.css"
 
 export const App = ({cart}) => {
 
-  const [cartItem, setCartItem] = useState(null)
-
-  const addItemToCart = (item) => {
-    setCartItem(item)
-  }
+  
   
   return (
     <>
@@ -23,8 +17,7 @@ export const App = ({cart}) => {
       </header>
 
       <main>
-        <Shop addItemToCart={addItemToCart} />
-        <Cart item={cartItem} />
+        <Shop />
       </main>
 
       <footer>
