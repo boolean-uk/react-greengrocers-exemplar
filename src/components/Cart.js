@@ -1,18 +1,67 @@
-import CartTotal from "./CartTotal"
-import CartItems from "./CartItems"
+import React, { useState, useEffect } from "react"
 
-function Cart(props) {
+import { CartTotal } from "./CartTotal"
+import { CartItem } from "./CartItem"
 
-  const {cartItems, decreaseQuantity, increaseQuantity} = props
+import { Titles } from "../utils/vars"
+
+export const Cart = (props) => {
+
+  const {item} = props
+
+  const [cartItems, setCartItems] = useState([])
+
+  useEffect(() => {
+
+    if (item) {
+      addItemToCart(item)
+    }
+
+  }, [item])
+
+  const addItemToCart = (item) => {
+    const existingCartItem = cartItems.find((existing) => existing.item === item)
+    if (existingCartItem !== undefined) {
+      increaseQuantity(existingCartItem)
+    } else {
+      setCartItems([...cartItems, { item: item, quantity: 1 }])
+    }
+  }
+
+  const increaseQuantity = (cartItem) => {
+    cartItem.quantity++
+    setCartItems([...cartItems])
+  }
+
+  const decreaseQuantity = (cartItem) => {
+    if (cartItem.quantity === 1) {
+      removeItemFromCart(cartItem)
+    } else {
+      cartItem.quantity--
+      setCartItems([...cartItems])
+    }
+  }
+
+  const removeItemFromCart = (cartItem) => {
+    setCartItems(cartItems.filter((existingCartItem) => cartItem != existingCartItem))
+  }
 
   return (
-    <main id="cart">
-      <CartItems cartItems={cartItems} 
-        increaseQuantity={increaseQuantity} 
-        decreaseQuantity={decreaseQuantity} />
+    <div id="cart">
+      <h2>{Titles.cartHeader}</h2>
+      <div className="cart--item-list-container">
+        <ul className="item-list cart--item-list">
+          {cartItems.map(cartItem => (
+            <CartItem 
+              key={cartItem.item.id}
+              cartItem={cartItem}
+              increaseQuantity={increaseQuantity}
+              decreaseQuantity={decreaseQuantity}
+            />
+          ))}
+        </ul>
+      </div>
       <CartTotal cartItems={cartItems} />
-    </main>
+    </div>
   )
 }
-
-export default Cart

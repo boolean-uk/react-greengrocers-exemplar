@@ -35,7 +35,11 @@ button {
   background-color: #e7f4ea;
 }
 
-#store h1 {
+header h1 {
+  text-align: center;
+}
+
+footer p {
   text-align: center;
 }
 

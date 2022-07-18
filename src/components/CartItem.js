@@ -1,12 +1,14 @@
-import ItemImage from "./ItemImage"
-
-function CartItem(props) {
+export const CartItem = (props) => {
   
   const { cartItem, decreaseQuantity, increaseQuantity } = props
 
   return (
-    <li key={cartItem.item.id}>
-      <ItemImage item={cartItem.item} className="cart--item-icon" />
+    <li>
+      <img 
+        className={'cart--item-icon' || ''} 
+        src={`/assets/icons/${cartItem.item.id}.svg`} 
+        alt={cartItem.name} 
+      />
       <p>{cartItem.item.name}</p>
       <button className="quantity-btn remove-btn center" onClick={() => decreaseQuantity(cartItem)}>
         -
@@ -18,5 +20,3 @@ function CartItem(props) {
     </li>
   )
 }
-
-export default CartItem

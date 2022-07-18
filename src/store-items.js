@@ -1,14 +1,9 @@
-export const StoreItemTypes = {
-  Fruit: 'fruit',
-  Veg: 'veg',
+export const ShopItemTypes = {
+  fruit: 'fruit',
+  veg: 'veg',
 }
 
-export const SortTypes = {
-  ByName: 'name',
-  ByPrice: 'price'
-}
-
-export const storeItems =  [
+export const Inventory =  [
   {
     id: "001-beetroot",
     name: "beetroot",

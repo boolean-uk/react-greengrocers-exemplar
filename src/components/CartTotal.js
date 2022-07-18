@@ -1,4 +1,6 @@
-function CartTotal(props) {
+import { Titles } from "../utils/vars"
+
+export const CartTotal = (props) => {
   
   const { cartItems } = props
 
@@ -14,7 +16,7 @@ function CartTotal(props) {
   return (
     <div className="total-section">
       <div>
-        <h3>Total</h3>
+        <h3>{Titles.cartTotal}</h3>
       </div>
       <div>
         <span className="total-number">£{totalCost()}</span>
@@ -22,5 +24,3 @@ function CartTotal(props) {
     </div>
   )
 }
-
-export default CartTotal
