@@ -6,10 +6,8 @@ import { Titles } from "./utils/vars"
 import "./styles/reset.css"
 import "./styles/index.css"
 
-export const App = ({cart}) => {
+export const App = () => {
 
-  
-  
   return (
     <>
       <header>

@@ -33,6 +33,7 @@ export const Shop = () => {
   return (
     <>
       <div id="store">
+        
         <label for="sort">
           {Titles.shopSort} 
           <select 
@@ -44,6 +45,7 @@ export const Shop = () => {
             <option value={SortTypes.name}>{SortTypes.name}</option>
           </select>
         </label>
+
         <div>
           <label for="filters">
             <input
@@ -64,6 +66,7 @@ export const Shop = () => {
             Show vegetables
           </label>
         </div>
+
         <ul className="item-list store--item-list">
           {filteredItems.map((item, index) => (
             <ShopItem 
@@ -73,6 +76,7 @@ export const Shop = () => {
             />
           ))}
         </ul>
+
       </div>
       
       <Cart item={cartItem} />
