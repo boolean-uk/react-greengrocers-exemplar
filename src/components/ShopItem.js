@@ -29,7 +29,6 @@ export const ShopItem = ({item, addItemToCart}) => {
 
       ) : (
 
-
         <li>
           <div className="store--item-icon">
             <button type="button" onClick={open}>
