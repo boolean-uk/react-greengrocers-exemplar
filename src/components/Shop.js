@@ -1,21 +1,26 @@
-import { useState } from "react"
+import { useState, useEffect } from "react"
 
 import { ShopItem } from "./ShopItem"
 import { Cart } from "./Cart"
 
-import { Inventory, ShopItemTypes } from "../store-items"
+import { Inventory } from "../store-items"
 
 import { Titles, SortTypes } from "../utils/vars"
 
 export const Shop = () => {
 
   const [cartItem, setCartItem] = useState(null)
-  const [sortType, setSortType] = useState(SortTypes.price)
-  
-  const [filters, setFilters] = useState({
-    [ShopItemTypes.veg]: true,
-    [ShopItemTypes.fruit]: true,
-  })
+  const [sortType, setSortType] = useState(SortTypes.price)  
+  const [filters, setFilters] = useState({})
+
+  useEffect(() => {
+
+    const itemsFilter = {}
+    Inventory.forEach(item => {
+      itemsFilter[item.type] = true    
+    })
+    setFilters(itemsFilter)
+  }, [])
 
   const toggleFilter = (type) => {
     setFilters({ ...filters, [type]: !filters[type] })
@@ -26,15 +31,18 @@ export const Shop = () => {
       [SortTypes.name] : (a, b) => a.name.localeCompare(b.name)
   }
 
-  const filteredItems = Inventory
-    .filter(storeItem => filters[storeItem.type])
-    .sort(sortFunctions[sortType])
+  let filteredItems = []
+  if (filters.hasOwnProperty(Inventory[0].type)) {
+    filteredItems = Inventory
+      .filter(storeItem => filters[storeItem.type])
+      .sort(sortFunctions[sortType])
+  }
 
   return (
     <>
       <div id="store">
         
-        <label for="sort">
+        <label htmlFor="sort">
           {Titles.shopSort} 
           <select 
             id="sort"
@@ -47,24 +55,23 @@ export const Shop = () => {
         </label>
 
         <div>
-          <label for="filters">
-            <input
-              id="fruit"
-              type="checkbox" 
-              checked={filters[ShopItemTypes.fruit]} 
-              onChange={() => toggleFilter(ShopItemTypes.fruit)}
-            />
-            Show fruit
-          </label>
-          <label for="veg">
-            <input 
-              id="veg"
-              type="checkbox" 
-              checked={filters[ShopItemTypes.veg]}
-              onChange={() => toggleFilter(ShopItemTypes.veg)}
-            />
-            Show vegetables
-          </label>
+          {
+            Object.keys(filters).map((filter, index) => {
+              return (
+                <label
+                  key={index} 
+                  htmlFor={filter}
+                >
+                  <input
+                    id={filter}
+                    type="checkbox" 
+                    checked={filters[filter]} 
+                    onChange={() => toggleFilter(filter)}
+                  />
+                  Show {filter}
+                </label>
+            )})
+          }
         </div>
 
         <ul className="item-list store--item-list">

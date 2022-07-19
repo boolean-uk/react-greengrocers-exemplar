@@ -1,66 +1,71 @@
-export const ShopItemTypes = {
-  fruit: 'fruit',
-  veg: 'veg',
-}
-
 export const Inventory =  [
   {
     id: "001-beetroot",
     name: "beetroot",
+    description: "beetroot",
     price: 1.00,
     type: 'veg',
   },
   {
     id: "002-carrot",
     name: "carrot",
+    description: "carrot",
     price: 0.35,
     type: 'veg',
   },
   {
     id: "003-apple",
     name: "apple",
+    description: "apple",
     price: 0.50,
     type: 'fruit',
   },
   {
     id: "004-apricot",
     name: "apricot",
+    description: "apricot",
     price: 0.35,
     type: 'fruit',
   },
   {
     id: "005-avocado",
     name: "avocado",
+    description: "avocado",
     price: 0.35,
     type: 'veg',
   },
   {
     id: "006-bananas",
     name: "bananas",
+    description: "bananas",
     price: 0.05,
     type: 'fruit',
   },
   {
     id: "007-bell-pepper",
     name: "bell pepper",
+    description: "bell pepper",
     price: 0.35,
     type: 'veg',
   },
   {
     id: "008-berry",
     name: "berry",
+    description: "berry",
     price: 0.35,
     type: 'fruit',
   },
   {
     id: "009-blueberry",
     name: "blueberry",
+    description: "blueberry",
     price: 0.35,
     type: 'fruit',
   },
   {
     id: "010-eggplant",
     name: "eggplant",
+    description: "eggplant",
     price: 0.35,
     type: 'veg',
   }
