@@ -59,10 +59,10 @@ function Store(props) {
 
   return (
     <header id="store">
-      <h1>Greengrocers</h1>
+      <h1>Greengrocers Store</h1>
       <div className="store--options">
         <label>
-          Sort&nbsp;
+          Sort by&nbsp;
           <select
             onChange={(e) => setSortType(e.target.value)}
             value={sortType}
