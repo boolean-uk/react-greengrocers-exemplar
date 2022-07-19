@@ -1,0 +1,72 @@
+export const Inventory =  [
+  {
+    id: "001-beetroot",
+    name: "beetroot",
+    description: "delicious beetroot - much more than a stain",
+    price: 1.00,
+    type: 'veg',
+  },
+  {
+    id: "002-carrot",
+    name: "carrot",
+    description: "carrots are not only for rabbits",
+    price: 0.35,
+    type: 'veg',
+  },
+  {
+    id: "003-apple",
+    name: "apple",
+    description: "an apple a day keeps the doctor away",
+    price: 0.50,
+    type: 'fruit',
+  },
+  {
+    id: "004-apricot",
+    name: "apricot",
+    description: "apricot jam - memories of nan",
+    price: 0.35,
+    type: 'fruit',
+  },
+  {
+    id: "005-avocado",
+    name: "avocado",
+    description: "avocado and soy sauce - yum",
+    price: 1.25,
+    type: 'veg',
+  },
+  {
+    id: "006-bananas",
+    name: "bananas",
+    description: "bananas are shipped to us",
+    price: 0.10,
+    type: 'fruit',
+  },
+  {
+    id: "007-bell-pepper",
+    name: "bell pepper",
+    description: "bell pepper and houmous - an absolute must",
+    price: 0.25,
+    type: 'veg',
+  },
+  {
+    id: "008-berry",
+    name: "berry",
+    description: "berries make merry",
+    price: 0.05,
+    type: 'fruit',
+  },
+  {
+    id: "009-blueberry",
+    name: "blueberry",
+    description: "blueberry pie makes your senses fly",
+    price: 0.05,
+    type: 'fruit',
+  },
+  {
+    id: "010-eggplant",
+    name: "eggplant",
+    description: "eggplant (aubergine) - a must for Moussaka",
+    price: 0.75,
+    type: 'veg',
+  }
+]

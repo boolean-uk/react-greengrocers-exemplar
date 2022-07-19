@@ -11,6 +11,16 @@ h2 {
   margin-bottom: 1rem;
 }
 
+/* App */
+
+header h1 {
+  text-align: center;
+}
+
+footer p {
+  text-align: center;
+}
+
 /* Buttons */
 
 button {
@@ -26,13 +36,13 @@ button {
   height: 40vh;
   padding: 1rem;
 
+  display: grid;
+  place-self: 41px;
+  place-items: center;
+  
   overflow-y: scroll;
 
   background-color: #e7f4ea;
-}
-
-#store h1 {
-  text-align: center;
 }
 
 .store--item-list {
@@ -51,6 +61,17 @@ button {
 .store--item-icon {
   width: 125px;
   height: 125px;
+}
+
+.modal {  
+  display: grid;
+  place-items: center center;
+
+  padding: 1rem;
+
+  border: 2px solid #00675b;
+
+  background: white;
 }
 
 @media only screen and (max-width: 600px) {
