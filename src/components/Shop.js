@@ -36,7 +36,7 @@ export const Shop = () => {
     filteredItems = Inventory
       .filter(storeItem => filters[storeItem.type])
       .sort(sortFunctions[sortType])
-  }
+  }                             
 
   return (
     <>

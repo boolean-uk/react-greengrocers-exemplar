@@ -11,6 +11,16 @@ h2 {
   margin-bottom: 1rem;
 }
 
+/* App */
+
+header h1 {
+  text-align: center;
+}
+
+footer p {
+  text-align: center;
+}
+
 /* Buttons */
 
 button {
@@ -35,14 +45,6 @@ button {
   background-color: #e7f4ea;
 }
 
-header h1 {
-  text-align: center;
-}
-
-footer p {
-  text-align: center;
-}
-
 .store--item-list {
   display: grid;
   grid-template-columns: repeat(4, 125px);
@@ -59,6 +61,17 @@ footer p {
 .store--item-icon {
   width: 125px;
   height: 125px;
+}
+
+.modal {  
+  display: grid;
+  place-items: center center;
+
+  padding: 1rem;
+
+  border: 2px solid #00675b;
+
+  background: white;
 }
 
 @media only screen and (max-width: 600px) {
