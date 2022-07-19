@@ -11,6 +11,10 @@ h2 {
   margin-bottom: 1rem;
 }
 
+.capitalize {
+  text-transform: capitalize;
+}
+
 /* Buttons */
 
 button {
@@ -27,7 +31,6 @@ button {
   padding: 1rem;
 
   display: grid;
-  place-self: 41px;
   place-items: center;
   
   overflow-y: scroll;
@@ -39,9 +42,16 @@ button {
   text-align: center;
 }
 
+.store--options {
+  display: grid;
+  gap: 0.5rem;
+  grid-auto-flow: column;
+  margin-bottom: 1.0rem;
+}
+
 .store--item-list {
   display: grid;
-  grid-template-columns: repeat(4, 125px);
+  grid-template-columns: repeat(5, 125px);
   grid-gap: 1rem;
   justify-content: center;
 }
@@ -72,7 +82,8 @@ button {
 /* Cart */
 
 #cart {
-  height: 60vh;
+  /* Leave some space for the footer */
+  height: 58vh;
   padding: 1rem;
 
   display: grid;
@@ -185,4 +196,10 @@ button {
     border-top: 2px solid #00675b;
     border-bottom: 2px solid #00675b;
   }
+}
+
+/* Footer */
+
+.footer {
+  margin-left: 0.5rem;
 }

@@ -1,4 +1,4 @@
-import ItemImage from "./ItemImage"
+import ItemImage from "../ItemImage"
 
 function CartItem(props) {
   

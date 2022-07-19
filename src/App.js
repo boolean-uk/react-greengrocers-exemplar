@@ -3,8 +3,8 @@ import "./styles/index.css"
 
 import { useState } from "react"
 
-import Store from "./components/Store"
-import Cart from "./components/Cart"
+import Store from "./components/Store/Store"
+import Cart from "./components/Cart/Cart"
 import Footer from "./components/Footer"
 
 export default function App() {

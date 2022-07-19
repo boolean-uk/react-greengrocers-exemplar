@@ -1,8 +1,9 @@
-import ItemImage from './ItemImage'
+import ItemImage from '../ItemImage'
 
 function StoreItem(props) {
   return (
     <li>
+      <p className='capitalize'>{props.storeItem.name}</p>
       <div className="store--item-icon">
         <ItemImage item={props.storeItem} />
       </div>
