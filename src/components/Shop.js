@@ -30,7 +30,7 @@ export const Shop = () => {
       Inventory.forEach(item => {
         itemsFilter[item.type] = true    
       })
-      
+
       setFilters(itemsFilter)
     }
 
@@ -81,15 +81,23 @@ export const Shop = () => {
           }
         </div>
 
-        <ul className="item-list store--item-list">
-          {filteredItems.map((item, index) => (
-            <ShopItem 
-              key={item.id} 
-              item={item} 
-              addItemToCart={setCartItem}
-            />
-          ))}
-        </ul>
+        { filteredItems.length ? (
+
+          <ul className="item-list store--item-list">
+            {filteredItems.map((item, index) => (
+              <ShopItem 
+                key={item.id} 
+                item={item} 
+                addItemToCart={setCartItem}
+              />
+            ))}
+          </ul>
+
+        ) : (
+
+          <p> {Titles.shopNoItems} </p>
+
+        )}       
 
       </div>
       

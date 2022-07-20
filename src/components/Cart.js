@@ -48,19 +48,32 @@ export const Cart = (props) => {
 
   return (
     <div id="cart">
+
       <h2>{Titles.cartHeader}</h2>
+      
       <div className="cart--item-list-container">
-        <ul className="item-list cart--item-list">
-          {cartItems.map(cartItem => (
-            <CartItem 
-              key={cartItem.item.id}
-              cartItem={cartItem}
-              increaseQuantity={increaseQuantity}
-              decreaseQuantity={decreaseQuantity}
-            />
-          ))}
-        </ul>
+
+        { cartItems.length ? (
+
+          <ul className="item-list cart--item-list">
+            {cartItems.map(cartItem => (
+              <CartItem 
+                key={cartItem.item.id}
+                cartItem={cartItem}
+                increaseQuantity={increaseQuantity}
+                decreaseQuantity={decreaseQuantity}
+              />
+            ))}
+          </ul>
+
+        ) : (
+
+          <p>{Titles.cartAddItems}</p>
+
+        )}
+        
       </div>
+
       <CartTotal cartItems={cartItems} />
     </div>
   )

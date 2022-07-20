@@ -1,6 +1,8 @@
 export const Titles = {
     shopName: 'Steve\'s Greengrocers',
     shopSort: 'Sort ',
+    shopNoItems: <>No products - please select one or more of the <i>show</i> checkboxes</>,
+    cartAddItems: 'No products in your cart - please add some!',
     cartHeader: 'Your Cart',
     cartTotal: 'Total',
     cartAdd: 'Add to cart',
