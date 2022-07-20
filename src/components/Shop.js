@@ -12,15 +12,29 @@ export const Shop = () => {
   const [cartItem, setCartItem] = useState(null)
   const [sortType, setSortType] = useState(SortTypes.price)  
   const [filters, setFilters] = useState({})
+  const [filteredItems, setFilteredItems] = useState([])
 
   useEffect(() => {
 
-    const itemsFilter = {}
-    Inventory.forEach(item => {
-      itemsFilter[item.type] = true    
-    })
-    setFilters(itemsFilter)
-  }, [])
+    if (filters.hasOwnProperty(Inventory[0].type)) {
+
+      const filtered = Inventory
+        .filter(storeItem => filters[storeItem.type])
+        .sort(sortFunctions[sortType])
+
+      setFilteredItems(filtered)
+
+    } else {
+
+      const itemsFilter = {}
+      Inventory.forEach(item => {
+        itemsFilter[item.type] = true    
+      })
+
+      setFilters(itemsFilter)
+    }
+
+  }, [filters])
 
   const toggleFilter = (type) => {
     setFilters({ ...filters, [type]: !filters[type] })
@@ -29,14 +43,7 @@ export const Shop = () => {
   const sortFunctions = {
       [SortTypes.price] : (a, b) => b.price - a.price,
       [SortTypes.name] : (a, b) => a.name.localeCompare(b.name)
-  }
-
-  let filteredItems = []
-  if (filters.hasOwnProperty(Inventory[0].type)) {
-    filteredItems = Inventory
-      .filter(storeItem => filters[storeItem.type])
-      .sort(sortFunctions[sortType])
-  }                             
+  }                 
 
   return (
     <>
@@ -74,15 +81,23 @@ export const Shop = () => {
           }
         </div>
 
-        <ul className="item-list store--item-list">
-          {filteredItems.map((item, index) => (
-            <ShopItem 
-              key={item.id} 
-              item={item} 
-              addItemToCart={setCartItem}
-            />
-          ))}
-        </ul>
+        { filteredItems.length ? (
+
+          <ul className="item-list store--item-list">
+            {filteredItems.map((item, index) => (
+              <ShopItem 
+                key={item.id} 
+                item={item} 
+                addItemToCart={setCartItem}
+              />
+            ))}
+          </ul>
+
+        ) : (
+
+          <p> {Titles.shopNoItems} </p>
+
+        )}       
 
       </div>
       
